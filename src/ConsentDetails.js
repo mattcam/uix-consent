@@ -2,12 +2,12 @@ import React, {useEffect, useRef, useState} from "react";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import CircularProgress from "@mui/material/CircularProgress";
 import FormHelperText from "@mui/material/FormHelperText";
 import Typography from "@mui/material/Typography";
 import {Button} from "@mui/material";
 import PrivacyPreferenceCenter from "./PrivacyPreferenceCenter";
 import Progress from "./Progress";
+import "regenerator-runtime/runtime";
 
 export default function ConsentDetails({endpoint, onConfirmChoices}) {
 
