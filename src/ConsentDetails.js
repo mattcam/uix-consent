@@ -15,7 +15,7 @@ export default function ConsentDetails({endpoint, onConfirmChoices}) {
     const [loading, setLoading] = useState(false);
 
     const values = useRef({})
-    const url = endpoint + '/consents/type/0/100';
+    const url = endpoint + '/consents/type/enabled';
 
     const handleResponse = async (response) => {
         response = await response
@@ -53,13 +53,13 @@ export default function ConsentDetails({endpoint, onConfirmChoices}) {
 
     const Consents = () => {
         return <div style={{display: "flex", gap: 15, height: "100%"}}>
-            <div style={{flex: "1 1"}}>
+            <div style={{width: 24, paddingTop: 3}}>
                 <PrivacyPreferenceCenter/>
             </div>
             <div style={{display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between"}}>
                 <div>
                     <Typography variant="h5" gutterBottom component="div">
-                        We require the following consents
+                        Please Manage Consent Preferences
                     </Typography>
                     {consents.map((consent, idx) => {
                         return <ConsentItem key={idx} {...consent}/>

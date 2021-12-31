@@ -18,8 +18,8 @@ export default function PrivacyPreferenceCenter() {
 
     return <div style={{display: "flex"}}>
         <div style={{cursor: "pointer", width: 35}}>
-            <div onClick={() => setDisplayInfo(true)} style={{width: 20, height: 20, borderRadius: "50%", border: "solid 2px black", display: "flex",
-                alignItems: "center", justifyContent: "center"}}>i</div>
+            <div onClick={() => setDisplayInfo(true)} style={{width: 20, height: 20, borderRadius: "50%", border: "solid 3px black", display: "flex",
+                alignItems: "center", justifyContent: "center"}}><b>i</b></div>
         </div>
         <Info/>
     </div>
