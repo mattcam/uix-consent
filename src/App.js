@@ -31,16 +31,16 @@ function App({domElement}) {
     }
 
     const handleConsents = (consents) => {
-        console.log(consents);
+
         const payload = {
             source: {
-                id: "1"
+                id: sourceId
             },
             session: {
-                id: "1"
+                id: sessionId
             },
             profile: {
-                id: "1"
+                id: profileId
             },
             events: [
                 {type: eventType, properties: consents}
@@ -57,7 +57,6 @@ function App({domElement}) {
             .then(response => console.log(response.json()))
             .catch(e => console.error(e))
             .finally(() => {setLoading(false); setOpen(false)});
-
     }
 
     return (
