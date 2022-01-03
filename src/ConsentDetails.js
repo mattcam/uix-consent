@@ -10,7 +10,7 @@ import Progress from "./Progress";
 import "regenerator-runtime/runtime";
 import Box from "@mui/material/Box";
 
-export default function ConsentDetails({endpoint, onConfirmChoices}) {
+export default function ConsentDetails({endpoint, sourceId, sessionId, profileId, eventType, onEnd}) {
 
     const [consents, setConsents] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -48,9 +48,44 @@ export default function ConsentDetails({endpoint, onConfirmChoices}) {
         }
     }
 
-    const handleConfirmChoices = () => {
-        if (onConfirmChoices) {
-            onConfirmChoices(values)
+    const handleConsents = async (consents) => {
+
+        const payload = {
+            source: {
+                id: sourceId
+            },
+            session: {
+                id: sessionId
+            },
+            profile: {
+                id: profileId
+            },
+            events: [
+                {type: eventType, properties: consents}
+            ]
+        }
+
+        setLoading(true)
+        try {
+            const response = await fetch(endpoint + "/track", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            console.log(response)
+        } catch(e) {
+            console.error(e)
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const handleConfirmChoices = async () => {
+        await handleConsents(values)
+        if (onEnd) {
+            onEnd(values)
         }
     }
 
@@ -107,7 +142,6 @@ export default function ConsentDetails({endpoint, onConfirmChoices}) {
     }
 
     const GroupConsents = () => {
-
         return <div>
             {objectMap(groupByKey(consents, "tags"),
                 (group, consents) => {
@@ -143,22 +177,22 @@ export default function ConsentDetails({endpoint, onConfirmChoices}) {
     }
 
     const Consents = () => {
-        return <div style={{display: "flex", gap: 15, height: "100%"}}>
-            <div style={{width: 24, paddingTop: 3}}>
-                <PrivacyPreferenceCenter/>
-            </div>
+        return <div style={{display: "flex", gap: 15, height: "100%", padding: 15}}>
+
             <div style={{display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between"}}>
-                <div>
+                <div style={{paddingBottom: 60}}>
                     <Typography variant="h5" gutterBottom component="div">
                         Please Manage Consent Preferences
                     </Typography>
                     <GroupConsents/>
                 </div>
-                <div>
+                <div style={{position: "sticky", bottom: 0, width: "100%", padding: "10px 0", background: "rgba(255,255,255,0.95)"}}>
                     <Button variant="contained" onClick={handleConfirmChoices}>Confirm my choice</Button>
                 </div>
             </div>
-
+            <div style={{width: 24, paddingTop: 3, paddingLeft: 10}}>
+                <PrivacyPreferenceCenter/>
+            </div>
         </div>
     }
 
