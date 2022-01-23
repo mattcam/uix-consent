@@ -177,7 +177,7 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
     }
 
     const Consents = () => {
-        return <div style={{display: "flex", gap: 15, height: "100%", padding: 15}}>
+        return <div style={{display: "flex", gap: 15, height: "100%", padding: 15, justifyContent: "space-between"}}>
 
             <div style={{display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between"}}>
                 <div style={{paddingBottom: 60}}>

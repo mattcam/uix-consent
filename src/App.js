@@ -12,6 +12,8 @@ function App({domElement}) {
     const sourceId = domElement.getAttribute("data-source") || null;
     const sessionId = domElement.getAttribute("data-session") || null;
     const profileId = domElement.getAttribute("data-profile") || null;
+    const position = domElement.getAttribute("data-position") || "bottom";
+    const maxHeight = domElement.getAttribute("data-expand-height") || 400;
 
     const [open, setOpen] = useState(false);
     const [customize, setCustomize] = useState(false);
@@ -29,14 +31,14 @@ function App({domElement}) {
 
     return (
             <Drawer
-                anchor={"bottom"}
+                anchor={position}
                 open={open}
                 onClose={() => setOpen(false)}
             >
                 <Collapse in={expand} collapsedSize={60}>
                     <div style={{
                         fontFamily: "apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-                        height: 400,
+                        height: maxHeight,
                         display: "flex",
                         justifyContent: "space-around",
                     }}>

@@ -48,7 +48,7 @@ export default function Question({endpoint, sourceId, sessionId, profileId, agre
     }
 
     const Ask = () => <>
-        <p style={{fontSize: 14, marginRight: 10}}>By clicking “Allow All”, you agree to this site Privacy Policy & Use
+        <p style={{fontSize: 14, margin: "0 10px 0 0"}}>By clicking “Allow All”, you agree to this site Privacy Policy & Use
             Terms.</p>
         <div style={{display: "flex", flexWrap: "nowrap"}}>
             <Button variant="contained" style={{marginRight: 10, marginBottom: 2}} onClick={handleAgree}>Agree</Button>
