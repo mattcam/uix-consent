@@ -7,8 +7,6 @@ import Collapse from "@mui/material/Collapse";
 function App({domElement}) {
 
     const endpoint = domElement.getAttribute("data-endpoint") || "http://0.0.0.0:8686";
-    const eventType = domElement.getAttribute("data-event-type") || "user-consent";
-    const agreeAllEventType = domElement.getAttribute("data-agree-all-event-type") || "user-consent-all";
     const sourceId = domElement.getAttribute("data-source") || null;
     const sessionId = domElement.getAttribute("data-session") || null;
     const profileId = domElement.getAttribute("data-profile") || null;
@@ -48,7 +46,6 @@ function App({domElement}) {
                             sourceId ={sourceId}
                             sessionId = {sessionId}
                             profileId = {profileId}
-                            agreeAllEventType = {agreeAllEventType}
                             onCustomize={handleCustomize}
                             onEnd={() => setOpen(false)}/>}
                         {customize && <ConsentDetails
@@ -56,7 +53,6 @@ function App({domElement}) {
                             sourceId ={sourceId}
                             sessionId = {sessionId}
                             profileId = {profileId}
-                            eventType = {eventType}
                             onEnd={() => setOpen(false)}/>}
                     </div>
                 </Collapse>

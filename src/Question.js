@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import React, {useState} from "react";
 import Progress from "./Progress";
 
-export default function Question({endpoint, sourceId, sessionId, profileId, agreeAllEventType, onCustomize, onEnd}) {
+export default function Question({endpoint, sourceId, sessionId, profileId, onCustomize, onEnd}) {
 
     const [loading, setLoading] = useState(false)
 
@@ -16,15 +16,12 @@ export default function Question({endpoint, sourceId, sessionId, profileId, agre
             },
             profile: {
                 id: profileId
-            },
-            events: [
-                {type: agreeAllEventType, properties: {}}
-            ]
+            }
         }
 
         setLoading(true)
         try {
-            const response = await fetch(endpoint + "/track", {
+            const response = await fetch(endpoint + "/customer/consent?all=true", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

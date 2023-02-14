@@ -10,7 +10,7 @@ import Progress from "./Progress";
 import "regenerator-runtime/runtime";
 import Box from "@mui/material/Box";
 
-export default function ConsentDetails({endpoint, sourceId, sessionId, profileId, eventType, onEnd}) {
+export default function ConsentDetails({endpoint, sourceId, sessionId, profileId, onEnd}) {
 
     const [consents, setConsents] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -60,14 +60,12 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
             profile: {
                 id: profileId
             },
-            events: [
-                {type: eventType, properties: consents}
-            ]
+            consents: consents
         }
 
         setLoading(true)
         try {
-            const response = await fetch(endpoint + "/track", {
+            const response = await fetch(endpoint + "/customer/consent", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -201,7 +199,7 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
             <FormControlLabel control={<Checkbox defaultChecked={checked}
                                                  onChange={(event) => setSelectedConsents(group, id, event.target.checked)}/>}
                               label={name}/>
-            <FormHelperText id="my-helper-text">{description}</FormHelperText>
+            <FormHelperText sx={{fontSize: "1em"}}>{description}</FormHelperText>
         </FormGroup>
     }
 
