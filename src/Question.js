@@ -26,7 +26,8 @@ export default function Question({endpoint, sourceId, sessionId, profileId, onCu
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(payload),
+                credentials: 'omit'
             })
 
             console.log(response)
