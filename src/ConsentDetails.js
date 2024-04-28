@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import Checkbox from "@mui/material/Checkbox";
+import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import PrivacyPreferenceCenter from "./PrivacyPreferenceCenter";
 import Progress from "./Progress";
+import PoweredBy from "./PoweredBy";
 import "regenerator-runtime/runtime";
 import Box from "@mui/material/Box";
 
@@ -73,7 +74,7 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
                 body: JSON.stringify(payload)
             })
             console.log(response)
-        } catch(e) {
+        } catch (e) {
             console.error(e)
         } finally {
             setLoading(false);
@@ -128,11 +129,11 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
     }
 
     const handleParentChange = (group, checked) => {
-        if(!(group in groups)) {
+        if (!(group in groups)) {
             return false
         }
         let newValues = {...values}
-        for(const i in groups[group]) {
+        for (const i in groups[group]) {
             const grp = groups[group][i]
             newValues[grp] = checked
         }
@@ -146,7 +147,8 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
                     const parentState = isChecked(group)
                     return <div key={group}>
                         <FormControlLabel
-                            label={group}
+                            size="small"
+                            label={<span style={{fontSize: 15}}>{group}</span>}
                             control={
                                 <Checkbox
                                     checked={parentState.all}
@@ -175,20 +177,52 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
     }
 
     const Consents = () => {
-        return <div style={{display: "flex", gap: 15, height: "100%", padding: 15, justifyContent: "space-between"}}>
+        return <div style={{display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between"}}>
+            <div>
+                <div style={{
+                    display: "flex",
+                    position: "sticky",
+                    top: 0,
+                    backgroundColor: "white",
+                    padding: 20,
+                    zIndex: 10,
+                    boxShadow: "0px 8px 40px -23px rgba(66, 66, 66, .5)"
+                }}>
+                    <div>
+                        <div style={{paddingBottom: 5, fontSize: 24}}>Consent Preferences</div>
+                        <div style={{paddingBottom: 5, fontSize: 15, color: "gray"}}>
+                            By adjusting your preferences, you control how the site owner can use your data. Certain
+                            permissions
+                            may need to be granted for the site to operate correctly.
+                        </div>
+                    </div>
+                    <div>
+                        <PoweredBy/>
+                    </div>
 
-            <div style={{display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between"}}>
-                <div style={{paddingBottom: 60}}>
-                    <Typography variant="h5" gutterBottom component="div">
-                        Please Manage Consent Preferences
-                    </Typography>
+                </div>
+
+                <div style={{padding: "5px 20px"}}>
+
+                </div>
+                <div style={{padding: "0 30px"}}>
                     <GroupConsents/>
                 </div>
-                <div style={{position: "sticky", bottom: 0, width: "100%", padding: "10px 0", background: "rgba(255,255,255,0.95)"}}>
-                    <Button variant="contained" onClick={handleConfirmChoices}>Confirm my choice</Button>
-                </div>
+
             </div>
-            <div style={{width: 24, paddingTop: 3, paddingLeft: 10}}>
+
+
+            <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                position: "sticky",
+                bottom: 0,
+                padding: "10px 20px",
+                background: "rgba(255,255,255,0.95)",
+                borderTop: "solid 1px #eee"
+            }}>
+                <Button variant="contained" onClick={handleConfirmChoices}>Save Settings</Button>
                 <PrivacyPreferenceCenter/>
             </div>
         </div>
@@ -196,10 +230,10 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
 
     const ConsentItem = ({group, id, name, description, revokable, checked}) => {
         return <FormGroup style={{width: "100%"}}>
-            <FormControlLabel control={<Checkbox defaultChecked={checked}
-                                                 onChange={(event) => setSelectedConsents(group, id, event.target.checked)}/>}
-                              label={name}/>
-            <FormHelperText sx={{fontSize: "1em"}}>{description}</FormHelperText>
+            <FormControlLabel control={<Switch defaultChecked={checked}
+                                               onChange={(event) => setSelectedConsents(group, id, event.target.checked)}/>}
+                              label={<span style={{fontSize: 18}}>{name}</span>}/>
+            <FormHelperText sx={{fontSize: "14px"}}>{description}</FormHelperText>
         </FormGroup>
     }
 

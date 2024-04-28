@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import React, {useState} from "react";
 import Progress from "./Progress";
+import PoweredBy from "./PoweredBy";
 
 export default function Question({endpoint, sourceId, sessionId, profileId, onCustomize, onEnd}) {
 
@@ -46,12 +47,13 @@ export default function Question({endpoint, sourceId, sessionId, profileId, onCu
     }
 
     const Ask = () => <>
-        <p style={{fontSize: 14, margin: "0 10px 0 0"}}>By clicking “Agree”, you agree to this site Privacy Policy & Use
+        <p style={{fontSize: 15, margin: "0 10px 0 0"}}>By clicking “Agree”, you agree to this site Privacy Policy & Use
             Terms.</p>
         <div style={{display: "flex", flexWrap: "nowrap"}}>
             <Button variant="contained" style={{marginRight: 10, marginBottom: 2}} onClick={handleAgree}>Agree</Button>
             <Button variant="outlined" onClick={onCustomize}>Customize</Button>
         </div>
+        <PoweredBy/>
     </>
 
     return <div style={{

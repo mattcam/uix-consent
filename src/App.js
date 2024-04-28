@@ -3,6 +3,19 @@ import Drawer from "@mui/material/Drawer";
 import ConsentDetails from "./ConsentDetails";
 import Question from "./Question";
 import Collapse from "@mui/material/Collapse";
+import {createTheme} from '@mui/material/styles';
+import {ThemeProvider} from "@mui/material/styles";
+
+export const theme = createTheme({
+    typography: {
+        "fontFamily": `"IBM Plex Sans", "Arial", sans-serif`,
+        "fontSize": 15,
+        "fontWeightLight": 300,
+        "fontWeightRegular": 400,
+        "fontWeightMedium": 500
+    }
+})
+
 
 function App({domElement}) {
 
@@ -28,6 +41,7 @@ function App({domElement}) {
     }
 
     return (
+        <ThemeProvider theme={theme}>
             <Drawer
                 anchor={position}
                 open={open}
@@ -35,7 +49,8 @@ function App({domElement}) {
             >
                 <Collapse in={expand} collapsedSize={60}>
                     <div style={{
-                        fontFamily: "apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+                        fontFamily: "'IBM Plex Sans', 'Helvetica', 'Arial', sans-serif",
+                        fontSize: 15,
                         height: maxHeight,
                         display: "flex",
                         justifyContent: "space-around",
@@ -57,6 +72,7 @@ function App({domElement}) {
                     </div>
                 </Collapse>
             </Drawer>
+        </ThemeProvider>
     );
 }
 

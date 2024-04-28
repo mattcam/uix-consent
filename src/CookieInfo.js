@@ -1,7 +1,9 @@
 import React from "react";
 
 export default function CookieInfo() {
-    return <div style={{padding: 15, fontSize: 14, fontFamily: "apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    return <div style={{
+        padding: "0px 40px 20px 40px", "fontFamily": `"IBM Plex Sans", "Arial", sans-serif`,
+        "fontSize": 15,
     }}>
         <p style={{fontSize: "inherit", fontFamily: "inherit"}}>When you visit any web site, it may store or retrieve information on your browser, mostly in the form of
             cookies. This information might be about you, your preferences or your device and is mostly used to make the
