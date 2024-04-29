@@ -64,7 +64,6 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
             consents: consents
         }
 
-        setLoading(true)
         try {
             const response = await fetch(endpoint + "/customer/consent", {
                 method: 'POST',
@@ -73,11 +72,8 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
                 },
                 body: JSON.stringify(payload)
             })
-            console.log(response)
         } catch (e) {
             console.error(e)
-        } finally {
-            setLoading(false);
         }
     }
 
