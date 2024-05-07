@@ -36,7 +36,7 @@ function App({domElement}) {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         setOpenInfo(true)
-        setHeight(362)
+        setHeight("100%")
         setWidth(400)
     };
 
