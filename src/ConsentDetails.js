@@ -65,7 +65,7 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
         }
 
         try {
-            const response = await fetch(endpoint + "/customer/consent", {
+            await fetch(endpoint + "/customer/consent", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -173,7 +173,13 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
     }
 
     const Consents = () => {
-        return <div style={{display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between"}}>
+        return <div style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 500,
+            justifyContent: "space-between",
+            fontFamily: "'IBM Plex Sans', 'Helvetica', 'Arial', sans-serif"
+        }}>
             <div>
                 <div style={{
                     display: "flex",
@@ -188,8 +194,7 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
                         <div style={{paddingBottom: 5, fontSize: 24}}>Consent Preferences</div>
                         <div style={{paddingBottom: 5, fontSize: 15, color: "gray"}}>
                             By adjusting your preferences, you control how the site owner can use your data. Certain
-                            permissions
-                            may need to be granted for the site to operate correctly.
+                            permissions may need to be granted for the site to operate correctly.
                         </div>
                     </div>
                     <div>
@@ -233,7 +238,7 @@ export default function ConsentDetails({endpoint, sourceId, sessionId, profileId
         </FormGroup>
     }
 
-    return <div style={{width: "100%", height: "100%"}}>
+    return <div>
         {loading && <Progress/>}
         {!loading && <Consents/>}
     </div>

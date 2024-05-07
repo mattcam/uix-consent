@@ -46,23 +46,36 @@ export default function Question({endpoint, sourceId, sessionId, profileId, onCu
         }
     }
 
-    const Ask = () => <>
-        <p style={{fontSize: 15, margin: "0 10px 0 0"}}>By clicking “Agree”, you agree to this site Privacy Policy & Use
-            Terms.</p>
-        <div style={{display: "flex", flexWrap: "nowrap"}}>
-            <Button variant="contained" style={{marginRight: 10, marginBottom: 2}} onClick={handleAgree}>Agree</Button>
-            <Button variant="outlined" onClick={onCustomize}>Customize</Button>
+    const Ask = () => <div style={{fontFamily: "'IBM Plex Sans', 'Helvetica', 'Arial', sans-serif"}}>
+        <div style={{padding: 20, fontSize: 22, fontWeight: 400, boxShadow: "0px 2px 18px -5px rgba(0,0,0,0.3)"}}>This website
+            uses cookies
         </div>
-        <PoweredBy/>
-    </>
+        <div style={{
+            padding: "0 20px 20px 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 35,
+            alignItems: "flex-end",
 
-    return <div style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-around",
-        height: 60,
-        padding: "0 10px"
-    }}>
+        }}>
+            <section style={{marginTop: 10}}>
+                <p>We use cookies to personalise content and ads, to provide social media features and to analyse our
+                    traffic. We also share information about your use of our site with our social media, advertising and
+                    analytics partners who may combine it with other information that you’ve provided to them or that
+                    they’ve collected from your use of their services.</p>
+
+                <div style={{display: "flex", flexWrap: "nowrap", marginTop: 30}}>
+                    <Button variant="contained" style={{marginRight: 10, marginBottom: 2}}
+                            onClick={handleAgree}>Agree</Button>
+                    <Button variant="outlined" onClick={onCustomize}>Customize</Button>
+                </div>
+            </section>
+
+            <PoweredBy/>
+        </div>
+    </div>
+
+    return <div style={{height: "100%"}}>
         {loading && <Progress/>}
         {!loading && <Ask/>}
     </div>
